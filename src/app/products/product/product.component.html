@@ -6,16 +6,16 @@
     </div>
   </div>
 
-  <div class="col-md-7">
+  <div class="col-md-6">
     <div class="caption">
       <h4>{{ product.name }}</h4>
       <p *ngIf="product.description" class="description">{{ product.description }}</p>
     </div>
   </div>
 
-  <div class="col-md-2">
+  <div class="col-md-3">
     <p>
-      <button class="btn btn-danger" role="button">Button</button>
+      <button class="btn btn-danger" role="button" (click)="removeProduct(product.id)">Remove</button>
     </p>
   </div>
 
