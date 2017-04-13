@@ -13,7 +13,7 @@ export const Products: Product[] = [
   {
     id: nextProductId++,
     name: `Product ${nextProductId}`,
-    description: `Product ${nextProductId} description`,
+    // description: `Product ${nextProductId} description`,
     price: nextProductId * 10,
     creationDate: new Date()
   },
