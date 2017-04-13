@@ -1,1 +1,23 @@
-{{ product | json }}
+<div class="row product">
+
+  <div class="col-md-3">
+    <div class="thumbnail">
+      <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=150%C3%97150&w=150&h=150" alt="">
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <div class="caption">
+      <h4>{{ product.name }}</h4>
+      <p *ngIf="product.description" class="description">{{ product.description }}</p>
+      <time>{{ product.creationDate | date: "medium" }}</time>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <p>
+      <button class="btn btn-danger" role="button">Button</button>
+    </p>
+  </div>
+
+</div>
