@@ -10,7 +10,7 @@
 
       <div class="temp">
 
-        <app-product-details [selectedProduct]="selectedProduct"></app-product-details>
+        <app-product-details *ngIf="selectedProduct" [model]="selectedProduct"></app-product-details>
 
       </div>
 

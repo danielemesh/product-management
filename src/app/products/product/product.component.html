@@ -1,22 +1,18 @@
 <div class="row product">
 
   <div class="col-md-3">
-    <div class="thumbnail">
-      <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=150%C3%97150&w=150&h=150" alt="">
-    </div>
+    <img class="img-responsive img-rounded"
+         src="https://placeholdit.imgix.net/~text?txtsize=33&txt=150%C3%97150&w=150&h=150"
+         alt="product image">
   </div>
 
   <div class="col-md-6">
-    <div class="caption">
-      <h4>{{ product.name }}</h4>
-      <p *ngIf="product.description" class="description">{{ product.description }}</p>
-    </div>
+    <h4>{{ product.name }}</h4>
+    <p *ngIf="product.description" class="description">{{ product.description }}</p>
   </div>
 
-  <div class="col-md-3">
-    <p>
-      <button class="btn btn-danger" role="button" (click)="removeProduct(product.id)">Remove</button>
-    </p>
+  <div class="col-md-3 text-right">
+    <button class="btn btn-danger" role="button" (click)="removeProduct(product.id)">Remove</button>
   </div>
 
 </div>

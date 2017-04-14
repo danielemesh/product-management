@@ -10,11 +10,41 @@ import { Product } from '../shared/product.model';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  @Input() selectedProduct: Product;
+  @Input() model: Product;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    console.log('submit!');
+  }
+
+  setControlClass(control): any {
+    let classes = {
+      wrapper: '',
+      icon: ''
+    };
+
+    if (control.valid && control.touched) {
+      classes = {
+        wrapper: 'has-success',
+        icon: 'glyphicon-ok'
+      };
+    }
+    else if (control.invalid) {
+      classes = {
+        wrapper: 'has-error',
+        icon: 'glyphicon-remove'
+      };
+    }
+
+    return classes;
+  }
+
+  // TODO: remove this when done!
+  get diagnostic() {
+    return JSON.stringify(this.model);
+  }
 }

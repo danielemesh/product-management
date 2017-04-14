@@ -24,7 +24,11 @@ export class ProductsComponent implements OnInit {
   getProducts() {
     this.productsService
       .getProducts()
-      .then(products => this.products = products);
+      .then(products => {
+        this.products = products;
+        // TODO: remove when done!
+        this.onSelectProduct(this.products[0]);
+      });
   }
 
   onSelectProduct(product) {
