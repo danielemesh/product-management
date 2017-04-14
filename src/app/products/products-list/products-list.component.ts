@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Product } from '../shared/product.model';
 
@@ -10,6 +10,7 @@ import { Product } from '../shared/product.model';
 })
 export class ProductsListComponent implements OnInit {
   @Input() products: Product[];
+  @Output() select = new EventEmitter<Product>();
 
   constructor() { }
 
@@ -18,6 +19,10 @@ export class ProductsListComponent implements OnInit {
 
   removeProduct(event) {
     this.products = this.products.filter(product => product.id !== event);
+  }
+
+  selectProduct(product) {
+    this.select.emit(product);
   }
 
 }

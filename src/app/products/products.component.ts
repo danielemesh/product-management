@@ -5,15 +5,17 @@ import { ProductsService } from './shared/products.service';
 
 
 @Component({
-  moduleId: module.id,
-  selector: 'app-products',
+  moduleId   : module.id,
+  selector   : 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls  : ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
   products: Product[];
+  selectedProduct: Product;
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService) {
+  }
 
   ngOnInit() {
     this.getProducts();
@@ -23,5 +25,10 @@ export class ProductsComponent implements OnInit {
     this.productsService
       .getProducts()
       .then(products => this.products = products);
+  }
+
+  onSelectProduct(product) {
+    console.log(product);
+    this.selectedProduct = {...product};
   }
 }

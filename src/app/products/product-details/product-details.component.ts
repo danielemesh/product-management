@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Product } from '../shared/product.model';
 
 @Component({
   moduleId: module.id,
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+
+  @Input() selectedProduct: Product;
 
   constructor() { }
 

@@ -2,7 +2,7 @@
 
     <div class="col-md-6">
 
-      <app-products-list [products]="products"></app-products-list>
+      <app-products-list [products]="products" (select)="onSelectProduct($event)"></app-products-list>
 
     </div>
 
@@ -10,7 +10,7 @@
 
       <div class="temp">
 
-        <app-product-details></app-product-details>
+        <app-product-details [selectedProduct]="selectedProduct"></app-product-details>
 
       </div>
 
