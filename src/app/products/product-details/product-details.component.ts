@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { Product } from '../shared/product.model';
 
@@ -11,14 +11,16 @@ import { Product } from '../shared/product.model';
 export class ProductDetailsComponent implements OnInit {
 
   @Input() model: Product;
+  @Output() submit = new EventEmitter<Product>();
 
-  constructor() { }
+  constructor() {
 
-  ngOnInit() {
   }
 
+  ngOnInit() { }
+
   onSubmit() {
-    console.log('submit!');
+    this.submit.emit(this.model);
   }
 
   setControlClass(control): any {
@@ -41,10 +43,5 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     return classes;
-  }
-
-  // TODO: remove this when done!
-  get diagnostic() {
-    return JSON.stringify(this.model);
   }
 }

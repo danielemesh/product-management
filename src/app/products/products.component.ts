@@ -24,15 +24,19 @@ export class ProductsComponent implements OnInit {
   getProducts() {
     this.productsService
       .getProducts()
-      .then(products => {
-        this.products = products;
-        // TODO: remove when done!
-        this.onSelectProduct(this.products[0]);
-      });
+      .then(products => this.products = products);
   }
 
-  onSelectProduct(product) {
-    console.log(product);
-    this.selectedProduct = {...product};
+  onSelectProduct(product: Product) {
+    this.selectedProduct = { ...product };
+  }
+
+  onSubmitProduct(product: Product) {
+    this.products = this.products.map(p => {
+      if (p.id !== product.id) {
+        return p;
+      }
+      return { ...p, ...product };
+    });
   }
 }
