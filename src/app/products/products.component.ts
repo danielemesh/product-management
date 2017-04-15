@@ -12,8 +12,8 @@ import { ProductsService } from './shared/products.service';
 })
 export class ProductsComponent implements OnInit {
   products: Product[];
+  filteredProducts: Product[];
   selectedProduct: Product;
-  sortOrder: 'name';
 
   constructor(private productsService: ProductsService) {
   }
@@ -22,17 +22,32 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  onSortOrderChange() {
-    if (this.sortOrder === 'name') {
-      this.products.sort(this.compareByName);
+  onSearchKeyup(search: string) {
+    if (!search) {
+      this.assignProducts(this.products);
+      return;
     }
-    else if (this.sortOrder === 'date') {
-      this.products.sort(this.compareByDate);
+
+    const regex = new RegExp(search, 'gi');
+
+    this.filteredProducts = this.products.filter(product => {
+      if (product.name.search(regex) !== -1 || product.description.search(regex) !== -1) {
+        return product;
+      }
+    });
+  }
+
+  onSortOrderChange(sortOrder) {
+    if (sortOrder === 'name') {
+      this.filteredProducts.sort(this.compareByName);
+    }
+    else if (sortOrder === 'date') {
+      this.filteredProducts.sort(this.compareByDate);
     }
   }
 
   private compareByDate(a: Product, b: Product) {
-      return a.creationDate.getTime() - b.creationDate.getTime();
+    return a.creationDate.getTime() - b.creationDate.getTime();
   }
 
   private compareByName(a: Product, b: Product) {
@@ -44,16 +59,21 @@ export class ProductsComponent implements OnInit {
     return 0;
   }
 
+  private assignProducts(products: Product[]) {
+    this.products = products;
+    this.filteredProducts = [...products];
+  }
+
   getProducts() {
     this.productsService
       .getProducts()
-      .then(products => this.products = products);
+      .then(products => this.assignProducts(products));
   }
 
   onRemoveProduct(id) {
     this.productsService
       .remove(id)
-      .then(products => this.products = products);
+      .then(products => this.assignProducts(products));
   }
 
   onSelectProduct(product: Product) {
@@ -64,7 +84,7 @@ export class ProductsComponent implements OnInit {
     this.productsService
       .upsert(product)
       .then(products => {
-        this.products = products;
+        this.assignProducts(products);
         this.selectedProduct = null;
       });
   }
