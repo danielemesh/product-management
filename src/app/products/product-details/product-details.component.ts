@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
-    this.submit.emit(this.model);
+    this.submit.emit({...this.model});
   }
 
   setControlClass(control): any {
