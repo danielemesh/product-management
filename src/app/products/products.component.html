@@ -1,12 +1,25 @@
 <div class="container products">
 
-  <div class="actions">
-
-    <button class="btn btn-success" (click)="onAddProductsBtnClick()">Add</button>
-
-  </div>
-
   <div class="col-md-6">
+
+    <div class="form-inline row actions">
+      <div class="form-group">
+        <button class="btn btn-success" (click)="onAddProductsBtnClick()">Add</button>
+      </div>
+
+      <div class="form-group">
+        <input type="search" class="form-control" placeholder="Search product">
+      </div>
+
+      <div class="form-group">
+        <label for="sort">Sort by</label>
+        <select id="sort" class="col-md form-control" [(ngModel)]="sortOrder" (change)="onSortOrderChange()">
+          <option value="name">Name</option>
+          <option value="date">Creation Date</option>
+        </select>
+      </div>
+
+    </div>
 
     <app-products-list [products]="products"
                        (select)="onSelectProduct($event)"
