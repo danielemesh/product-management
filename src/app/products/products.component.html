@@ -1,19 +1,25 @@
 <div class="container products">
 
-    <div class="col-md-6">
+  <div class="actions">
 
-      <app-products-list [products]="products" (select)="onSelectProduct($event)"></app-products-list>
+    <button class="btn btn-success" (click)="addProduct()">Add</button>
+
+  </div>
+
+  <div class="col-md-6">
+
+    <app-products-list [products]="products" (select)="onSelectProduct($event)"></app-products-list>
+
+  </div>
+
+  <div class="col-md-6">
+
+    <div class="temp">
+
+      <app-product-details *ngIf="selectedProduct" [model]="selectedProduct" (submit)="onSubmitProduct($event)"></app-product-details>
 
     </div>
 
-    <div class="col-md-6">
-
-      <div class="temp">
-
-        <app-product-details *ngIf="selectedProduct" [model]="selectedProduct" (submit)="onSubmitProduct($event)"></app-product-details>
-
-      </div>
-
-    </div>
+  </div>
 
 </div>

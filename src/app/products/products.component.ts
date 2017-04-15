@@ -32,11 +32,24 @@ export class ProductsComponent implements OnInit {
   }
 
   onSubmitProduct(product: Product) {
-    this.products = this.products.map(p => {
-      if (p.id !== product.id) {
-        return p;
-      }
-      return { ...p, ...product };
-    });
+    // Temporary workaround for ngSubmit firing twice bug
+    if (product instanceof Event) {
+      return;
+    }
+
+    const originProductIndex = this.products.findIndex(p => p.id === product.id);
+
+    if (originProductIndex !== -1) {
+      this.products[originProductIndex] = product;
+    }
+    else {
+      this.productsService.create(product).then(newProduct => {
+        this.products.push(newProduct);
+      });
+    }
+  }
+
+  addProduct() {
+    this.selectedProduct = new Product();
   }
 }

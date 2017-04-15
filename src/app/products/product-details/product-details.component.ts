@@ -35,7 +35,7 @@ export class ProductDetailsComponent implements OnInit {
         icon: 'glyphicon-ok'
       };
     }
-    else if (control.invalid) {
+    else if (control.invalid && control.touched) {
       classes = {
         wrapper: 'has-error',
         icon: 'glyphicon-remove'

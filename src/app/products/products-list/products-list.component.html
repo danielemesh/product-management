@@ -1,5 +1,10 @@
 <ul class="list-unstyled">
   <li *ngFor="let product of products">
-    <app-product [product]="product" (remove)="removeProduct($event)" (click)="selectProduct(product)"></app-product>
+    <app-product
+      [product]="product"
+      (remove)="removeProduct($event)"
+      (click)="selectProduct(product)"
+      [ngClass]="">
+    </app-product>
   </li>
 </ul>
