@@ -105,6 +105,9 @@ export class ProductsService {
   init() {
     this
       .getProducts()
-      .then(products => this.products = products);
+      .then(products => this.products = products)
+      .then(products => {
+        products.map(p => p.creationDate = new Date(p.creationDate));
+      });
   }
 }
