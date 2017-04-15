@@ -28,32 +28,25 @@ export class ProductsComponent implements OnInit {
   }
 
   onRemoveProduct(id) {
-    this.products = this.products.filter(p => p.id !== id);
+    this.productsService
+      .remove(id)
+      .then(products => this.products = products);
   }
 
   onSelectProduct(product: Product) {
-    this.selectedProduct = { ...product };
+    this.selectedProduct = {...product};
   }
 
   onSubmitProduct(product: Product) {
-    // Search the product in the products array
-    const index = this.products.findIndex(p => p.id === product.id);
-
-    // Update product
-    if (index !== -1) {
-      this.products[index] = product;
-    }
-    // Create new product
-    else {
-      this.productsService
-        .create(product)
-        .then(newProduct => this.products.push(newProduct));
-    }
-
-    this.selectedProduct = null;
+    this.productsService
+      .upsert(product)
+      .then(products => {
+        this.products = products;
+        this.selectedProduct = null;
+      });
   }
 
-  addProduct() {
+  onAddProductsBtnClick() {
     this.selectedProduct = new Product();
   }
 }
