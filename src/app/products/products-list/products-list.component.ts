@@ -11,6 +11,7 @@ import { Product } from '../shared/product.model';
 export class ProductsListComponent implements OnInit {
   @Input() products: Product[];
   @Output() select = new EventEmitter<Product>();
+  @Output() remove = new EventEmitter<number>();
 
   constructor() { }
 
@@ -18,7 +19,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   removeProduct(id) {
-    this.products = this.products.filter(product => product.id !== id);
+    this.remove.emit(id);
   }
 
   selectProduct(product) {
