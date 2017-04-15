@@ -17,7 +17,7 @@ export const Products: Product[] = [
   {
     id: getNextProductId(),
     name: `Product ${nextProductId}`,
-    // description: `Product ${nextProductId} description`,
+    description: '',
     price: nextProductId * 10,
     creationDate: new Date()
   },
