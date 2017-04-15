@@ -27,26 +27,30 @@ export class ProductsComponent implements OnInit {
       .then(products => this.products = products);
   }
 
+  onRemoveProduct(id) {
+    this.products = this.products.filter(p => p.id !== id);
+  }
+
   onSelectProduct(product: Product) {
     this.selectedProduct = { ...product };
   }
 
   onSubmitProduct(product: Product) {
-    // Temporary workaround for ngSubmit firing twice bug
-    if (product instanceof Event) {
-      return;
-    }
+    // Search the product in the products array
+    const index = this.products.findIndex(p => p.id === product.id);
 
-    const originProductIndex = this.products.findIndex(p => p.id === product.id);
-
-    if (originProductIndex !== -1) {
-      this.products[originProductIndex] = product;
+    // Update product
+    if (index !== -1) {
+      this.products[index] = product;
     }
+    // Create new product
     else {
-      this.productsService.create(product).then(newProduct => {
-        this.products.push(newProduct);
-      });
+      this.productsService
+        .create(product)
+        .then(newProduct => this.products.push(newProduct));
     }
+
+    this.selectedProduct = null;
   }
 
   addProduct() {

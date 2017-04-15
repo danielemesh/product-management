@@ -8,7 +8,7 @@
          alt="product image">
   </div>
 
-  <form class="col-xs-12 details-form" (ngSubmit)="onSubmit()" #detailsForm="ngForm">
+  <form class="col-xs-12 details-form" (ngSubmit)="onSubmit(); detailsForm.reset();" #detailsForm="ngForm">
 
     <div class="form-group has-feedback" [ngClass]="setControlClass(name).wrapper">
       <label for="name">Name</label>

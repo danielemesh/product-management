@@ -8,17 +8,19 @@
 
   <div class="col-md-6">
 
-    <app-products-list [products]="products" (select)="onSelectProduct($event)"></app-products-list>
+    <app-products-list [products]="products"
+                       (select)="onSelectProduct($event)"
+                       (remove)="onRemoveProduct($event)">
+    </app-products-list>
 
   </div>
 
   <div class="col-md-6">
 
-    <div class="temp">
-
-      <app-product-details *ngIf="selectedProduct" [model]="selectedProduct" (submit)="onSubmitProduct($event)"></app-product-details>
-
-    </div>
+    <app-product-details *ngIf="selectedProduct"
+                         [model]="selectedProduct"
+                         (submit)="onSubmitProduct($event)">
+    </app-product-details>
 
   </div>
 
