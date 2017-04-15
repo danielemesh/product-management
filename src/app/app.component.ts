@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ProductsService } from './products/shared/products.service';
 
@@ -9,6 +9,12 @@ import { ProductsService } from './products/shared/products.service';
   styleUrls: ['./app.component.scss'],
   providers: [ProductsService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'My Store';
+
+  constructor(private productsService: ProductsService) {}
+
+  ngOnInit() {
+    this.productsService.init();
+  }
 }
