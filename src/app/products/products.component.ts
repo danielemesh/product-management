@@ -19,7 +19,10 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProducts();
+    this
+      .getProducts()
+      .then(() => this.onSortOrderChange('name'));
+
   }
 
   onSearchKeyup(search: string) {
@@ -65,7 +68,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts() {
-    this.productsService
+    return this.productsService
       .getProducts()
       .then(products => this.assignProducts(products));
   }
