@@ -34,6 +34,9 @@ export class ProductsService {
       }
     }
 
+    // Set creation date as Date object
+    products.map(p => p.creationDate = new Date(p.creationDate));
+
     return Promise.resolve(products);
   }
 
@@ -105,9 +108,6 @@ export class ProductsService {
   init() {
     this
       .getProducts()
-      .then(products => this.products = products)
-      .then(products => {
-        products.map(p => p.creationDate = new Date(p.creationDate));
-      });
+      .then(products => this.products = products);
   }
 }
