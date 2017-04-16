@@ -1,6 +1,7 @@
 <ul class="list-unstyled">
   <li *ngFor="let product of products"
       class="clearfix product"
+      [ngClass]="{ 'bg-info': activeProductId === product.id }"
       (click)="selectProduct(product)">
 
     <div class="col-md-3">
