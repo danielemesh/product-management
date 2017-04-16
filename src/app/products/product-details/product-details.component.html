@@ -40,6 +40,9 @@
                pattern="^[1-9]\d*$">
         <span class="input-group-addon">$</span>
       </div>
+      <div [hidden]="price.valid || price.pristine" class="alert alert-danger col-md-5">
+        Price is required
+      </div>
     </div>
 
     <div class="text-right">
