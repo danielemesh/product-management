@@ -10,7 +10,6 @@ import { HeaderComponent } from './header/header.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
-import { AppRoutingModule } from './app-routing.module';
 
 const localStorageConfig: ILocalStorageServiceConfig = {
   prefix: 'product-manager',
@@ -29,7 +28,6 @@ const localStorageConfig: ILocalStorageServiceConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule,
     LocalStorageModule.withConfig(localStorageConfig)
   ],
   providers: [],
